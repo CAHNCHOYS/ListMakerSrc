@@ -16,6 +16,7 @@
             </div>
             <div class="search-item__add-btn">
                 <button class="btn" @click="addNewItem">Добавить</button>
+
                 <Transition name="message">
                     <p class="search-item__action-message search-item__action-message_success" v-show="isItemAdded">
                         Элемент добавлен в список
@@ -27,9 +28,11 @@
                         Такой элемент уже есть в списке!
                     </p>
                 </Transition>
-
             </div>
+
+
         </div>
+
     </div>
 </template>
 
@@ -130,9 +133,12 @@ const addNewItem = (): void => {
 
     // .search-item__add-btn
     &__add-btn {
-
+        display: flex;
+        flex-direction: column;
+         
 
         button {
+            align-self: flex-start;
             border-radius: rem(10);
             padding: 0 rem(15);
         }
