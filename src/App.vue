@@ -26,9 +26,7 @@
 import TheFooter from './components/TheFooter.vue';
 import TheHeader from './components/TheHeader.vue';
 
-import { useUserListsStore } from "@/stores/userLists";
 
-const userListsStore = useUserListsStore();
 
 
 
@@ -40,12 +38,12 @@ const userListsStore = useUserListsStore();
 
 
 <style lang="scss">
-@import "@/assets/nullstyle.scss";
-@import "@/assets/adaptive-value.scss";
-@import "@/assets/Ui.scss";
+@import "@/assets/scss/nullstyle.scss";
+@import "@/assets/scss/adaptive-value.scss";
+@import "@/assets/scss/Ui.scss";
 
 
-@import "@/assets/fonts.scss";
+@import "@/assets/scss/fonts.scss";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 

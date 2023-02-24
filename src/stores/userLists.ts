@@ -3,30 +3,28 @@ import { computed, ref } from "vue";
 import type { List, ListItem } from "@/types/index";
 
 export const useUserListsStore = defineStore("lists", () => {
-
-
   const userLists = ref<Map<string, List>>(
     new Map(JSON.parse(localStorage.getItem("userLists") || "[]"))
   );
 
-  const saveListsInStorage = (): void => {
+  function saveListsInStorage(): void {
     localStorage.setItem(
       "userLists",
       JSON.stringify(Array.from(userLists.value.entries()))
     );
-  };
+  }
 
-  const createNewList = (name: string, category: string): void => {
+  function createNewList(name: string, category: string): void {
     userLists.value.set(name, { category, listItems: [] });
     saveListsInStorage();
-  };
+  }
 
-  const deleteList = (name: string): void => {
+  function deleteList(name: string): void {
     userLists.value.delete(name);
     saveListsInStorage();
-  };
+  }
 
-  const addItemToList = (listName: string, item: ListItem) => {
+  function addItemToList(listName: string, item: ListItem) {
     const items = userLists.value.get(listName)!;
     if (!items.listItems.find((element) => element.title === item.title)) {
       items.listItems.push(item);
@@ -38,14 +36,14 @@ export const useUserListsStore = defineStore("lists", () => {
       return {
         isSameItem: true,
       };
-  };
+  }
 
-  const removeItemFromList = (listName: string, index: number): void => {
+  function removeItemFromList(listName: string, index: number): void {
     userLists.value.get(listName)?.listItems.splice(index, 1);
     saveListsInStorage();
-  };
+  }
 
-  const updateListName = (oldName: string, newName: string): void => {
+  function updateListName(oldName: string, newName: string): void {
     if (oldName === newName) return;
 
     const oldList = userLists.value.get(oldName);
@@ -55,7 +53,7 @@ export const useUserListsStore = defineStore("lists", () => {
 
       saveListsInStorage();
     }
-  };
+  }
 
   const filterListsByCategory = computed(() => {
     return function (category: string) {

@@ -1,25 +1,22 @@
 <template>
     <div class="list-creation">
         <form name="name-form" class="list-creation__name-form name-form" v-if="!isListNameAdded">
-            <div class="name-form__title">Имя вашего списка</div>
+            <div class="name-form__title">Имя списка: </div>
             <div class="name-form__input">
                 <input type="text" v-model="listName" placeholder="Введите имя списка сюда">
                 <div class="name-form__wrong-name" v-show="isWrongName">
                     Название списка должно содержать минимум 4 символов !
                 </div>
             </div>
-
             <button @click.prevent="createNewList" class="name-form__btn btn">
                 Далее
             </button>
-
-
         </form>
 
+        
         <Transition name="scale">
 
             <div class="list-creation__user-list" v-if="isListNameAdded">
-
                 <UserList :list="userListsStore.getListByName(listName)!" :name="listName" />
             </div>
 
@@ -78,7 +75,7 @@ const createNewList = (): void => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 
 .list-creation {

@@ -58,7 +58,7 @@ const toggleMobileMenu = (): void => {
 </script>
 
 <style lang="scss" >
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 
 .header {

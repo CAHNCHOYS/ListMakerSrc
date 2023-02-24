@@ -103,6 +103,7 @@ const emit = defineEmits<{
 watch(
   () => props.index,
   () => {
+
     newIndex.value = props.index + 1;
   }
 );
@@ -112,11 +113,12 @@ const userListsStore = useUserListsStore();
 const isUserEditing = ref(false);
 const newIndex = ref(props.index + 1);
 
-const saveChanges = () => {
+const saveChanges = ():void => {
   isUserEditing.value = false;
   emit("moveItem", newIndex.value - 1, props.index);
   userListsStore.saveListsInStorage();
 };
+
 
 const top3Items = computed(() => {
   return {
@@ -131,7 +133,7 @@ const top3Items = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 .list-item {
   border-bottom: rem(1) solid lightgrey;

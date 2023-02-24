@@ -28,9 +28,11 @@ export const useListItemsSearch = (props: {
   });
   //---------------------------
 
+
   const searchQuery = ref(""); //Строка поиска
   const searchItems = ref<ListItem[]>([]);
   const errorMessage = ref("");
+
 
   const isError = ref(false);
   const isTyping = ref(false);
@@ -38,6 +40,7 @@ export const useListItemsSearch = (props: {
 
   //меняем ссылку на api в зависимости от категории списка
   const getFetchLink = computed(() => {
+
     let category = props.list?.category;
     let fetchLink = {
       link: "",
@@ -73,6 +76,8 @@ export const useListItemsSearch = (props: {
             "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
           },
         };
+        hintsForUser.value.placeholderHint = "Введите название трека или исполнителя";
+        hintsForUser.value.searchHint = "Ищем трек ";
         break;
 
       case "Игры":
@@ -93,7 +98,6 @@ export const useListItemsSearch = (props: {
           "Введите название коктейля (на англ)";
         hintsForUser.value.searchHint = "Ищем коктейль ";
         break;
-
       default:
         break;
     }
@@ -105,6 +109,7 @@ export const useListItemsSearch = (props: {
     isSearching.value = true;
 
     try {
+      
       let res = await fetch(
         getFetchLink.value.link + searchQuery.value,
         getFetchLink.value.options
@@ -114,9 +119,9 @@ export const useListItemsSearch = (props: {
 
       console.log(json);
 
+
       if (!json.errorMessage && !json.error) {
         const results = json.results || json.data || json.drinks || [];
-
         if (results.length) {
           searchItems.value = results.map((item) => ({
             id: item.id || item.idDrink,
@@ -166,4 +171,9 @@ export const useListItemsSearch = (props: {
     isError,
     isTyping,
   };
+
+
+
+
+
 };

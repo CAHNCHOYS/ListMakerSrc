@@ -78,10 +78,12 @@ const deleteOneList = (name: string) => {
 
 
 
+
+
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 .all-lists {
   // .all-lists__title

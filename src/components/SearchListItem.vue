@@ -49,7 +49,7 @@ const { addItemToList } = useUserListsStore();
 const isItemAdded = ref(false);
 const isSameItem = ref(false);
 
-const addNewItem = () => {
+const addNewItem = (): void => {
     if (addItemToList(props.listName, props.item).isAdded) {
         isItemAdded.value = true;
         setTimeout(() => (isItemAdded.value = false), 1500);
@@ -64,7 +64,7 @@ const addNewItem = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 .search-item {
 
@@ -84,9 +84,7 @@ const addNewItem = () => {
     }
 
     // .search-item__picture
-    &__picture {
-    
-    }
+    &__picture {}
 
     // .search-item__info
 
@@ -120,8 +118,8 @@ const addNewItem = () => {
         }
     }
 
-    // .search-item__description
 
+    // .search-item__description
     &__description {
         font-size: rem(20);
 
@@ -132,7 +130,7 @@ const addNewItem = () => {
 
     // .search-item__add-btn
     &__add-btn {
-    
+
 
         button {
             border-radius: rem(10);
@@ -161,10 +159,5 @@ const addNewItem = () => {
         }
     }
 }
-
-
-
-
-
 </style>
 

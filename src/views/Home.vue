@@ -39,7 +39,7 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 .home-page {
   // .home-page__title
@@ -47,6 +47,7 @@
   &__title {
     margin: 0px 0px rem(90) 0px;
     text-align: center;
+    line-height: 1.2;
     font-weight: 900;
     @media (max-width: #{$mobile+px}) {
       margin: 0px 0px rem(40) 0px;

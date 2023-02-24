@@ -4,8 +4,13 @@
       <div class="list__name">
         <div class="list__name-edit" v-show="isNameEditing">
           <p>
-            <input type="text" v-model="newListName" placeholder="Введите новое имя списка" class="list__edit-name-input"
-              @keyup.enter="updateListName" />
+            <input
+              type="text"
+              v-model="newListName"
+              placeholder="Введите новое имя списка"
+              class="list__edit-name-input"
+              @keyup.enter="updateListName"
+            />
           </p>
 
           <button class="btn" @click="updateListName">Сохранить</button>
@@ -16,23 +21,27 @@
         </div>
       </div>
 
-      <div class="list__goto-add" v-if="list.listItems.length > 10" @click="goToAddInput">
+      <div
+        class="list__goto-add"
+        v-if="list.listItems.length > 10"
+        @click="goToAddInput"
+      >
         <button class="btn">Перейти к добавлению элементов</button>
       </div>
 
-
       <div class="list__list-items" v-if="list.listItems.length">
-
         <TransitionGroup name="list-anim">
-
-          <UserListItem v-for="(item, index) in list.listItems" :key="item.id"
-            :is-last="index === list.listItems.length - 1" :index="index" :list-item="item"
-            @delete-item="userListsStore.removeItemFromList(name, $event)" @swap="swapItems" @move-item="moveItem" />
-
+          <UserListItem
+            v-for="(item, index) in list.listItems"
+            :key="item.id"
+            :is-last="index === list.listItems.length - 1"
+            :index="index"
+            :list-item="item"
+            @delete-item="userListsStore.removeItemFromList(name, $event)"
+            @swap="swapItems"
+            @move-item="moveItem"
+          />
         </TransitionGroup>
-
-
-
       </div>
 
       <div class="list__no-items" v-else>
@@ -41,12 +50,23 @@
 
       <form @submit.prevent="" class="list__add-form add-form">
         <div class="add-form__input">
-          <span class="icon-close" @click="searchQuery = ''" v-show="searchQuery.length">
+          <span
+            class="icon-close"
+            @click="searchQuery = ''"
+            v-show="searchQuery.length"
+          >
           </span>
-          <input v-model="searchQuery" :placeholder="hintsForUser.placeholderHint" type="text" />
+          <input
+            v-model="searchQuery"
+            :placeholder="hintsForUser.placeholderHint"
+            type="text"
+          />
         </div>
 
-        <div class="add-form__search-elements search-elems" v-show="searchQuery.length > 0">
+        <div
+          class="add-form__search-elements search-elems"
+          v-show="searchQuery.length > 0"
+        >
           <div class="search-elems__searching" v-show="isSearching">
             <VLoading :message="hintsForUser.searchHint + searchQuery + '...'">
             </VLoading>
@@ -56,40 +76,47 @@
             Произошла ошибка + {{ errorMessage }}
           </div>
 
-          <div class="search-elems__all-elems" v-if="searchItems.length">
-            <SearchListItem v-for="item in searchItems"   :list-name="name" :key="item.title" :item="item"
-               />
+          <div class="search-elems__all-elems" v-else-if="searchItems.length">
+            <SearchListItem
+              v-for="item in searchItems"
+              :list-name="name"
+              :key="item.title"
+              :item="item"
+            />
           </div>
-          <div class="search-elems__no-items" v-else-if="!isSearching && !isError && !isTyping">
+
+          <div
+            class="search-elems__no-items"
+            v-else-if="!isSearching && !isTyping"
+          >
             Не удалось найти ничего похожего на {{ searchQuery }}. Попробуйте
             начти что-нибудь другое
           </div>
+
         </div>
       </form>
+
+      
     </div>
     <div class="list__no-list" v-else="!list">
       <p>Не удалось найти список с таким названием :(</p>
-
       <p>
-        <RouterLink :to="{ name: 'all-lists' }" class="btn">На страницу списков
+        <RouterLink :to="{ name: 'all-lists' }" class="btn"
+          >На страницу списков
         </RouterLink>
       </p>
     </div>
-
-
-
   </div>
 </template>
 
 <script lang="ts" setup>
-import SearchListItem from "./ListItems/SearchListItem.vue";
-import UserListItem from "./ListItems/UserListItem.vue";
+import SearchListItem from "./SearchListItem.vue";
+import UserListItem from "./UserListItem.vue";
 
 import type { List } from "@/types/index";
 import { useListItemsSearch } from "@/composables/useListItemsSearch";
-import { useListItemsActions } from "@/composables/useListActions"
+import { useListItemsActions } from "@/composables/useListActions";
 import { useUserListsStore } from "@/stores/userLists";
-
 
 const props = defineProps<{
   name: string;
@@ -98,20 +125,15 @@ const props = defineProps<{
 
 const userListsStore = useUserListsStore();
 
-
 const {
   isNameEditing,
   newListName,
-  
 
   moveItem,
   swapItems,
   goToAddInput,
   updateListName,
 } = useListItemsActions(props);
-
-
-
 
 const {
   isSearching,
@@ -122,21 +144,10 @@ const {
   errorMessage,
   isTyping,
 } = useListItemsSearch(props);
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 .list {
   padding: 0px 0px rem(40) 0px;
@@ -235,7 +246,8 @@ const {
   }
 
   // .list__add-form
-  &__add-form {}
+  &__add-form {
+  }
 
   // .list__list-items
   &__list-items {
@@ -320,7 +332,8 @@ const {
 
   // .search-elems__all-elems
 
-  &__all-elems {}
+  &__all-elems {
+  }
 
   // .search-elems__no-items
 

@@ -14,6 +14,7 @@ export interface ListItem {
     userComment?: string;
 }
 
+
 export interface List  {
     category: string;
     listItems: ListItem[];
@@ -30,10 +31,9 @@ export type FetchItem = {
     
     description: string;
     "release-date": string;
-    names: {
+    names?: {
         international: string,
     };
-
     //Для игры
     assets?: {
        "cover-large": {
@@ -47,6 +47,7 @@ export type FetchItem = {
 }
 
 
+
 //json api response
 export interface ResponseAnswer {
     errorMessage: string;
@@ -54,9 +55,6 @@ export interface ResponseAnswer {
     data: FetchItem[];
     results?: FetchItem[];
     drinks?: FetchItem[];
-    
-
-    
 }
 
 

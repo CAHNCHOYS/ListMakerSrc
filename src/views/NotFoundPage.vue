@@ -11,17 +11,12 @@
 
 <script setup lang="ts">
 
-
-
-
-
-
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-//font-family: 'Poppins', sans-serif;
+
 
 
 .not-found {

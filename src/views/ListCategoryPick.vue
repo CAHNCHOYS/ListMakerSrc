@@ -26,20 +26,15 @@
 
 
 <script setup lang="ts">
-
-
 import { useListCategories } from '@/composables/useListsCategories';
-
-
 const { getImgUrl, allCategories } = useListCategories();
-
 
 
 
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/adaptive-value.scss";
+@import "@/assets/scss/adaptive-value.scss";
 
 
 .choose-categories {
