@@ -115,11 +115,11 @@ export const useListItemsSearch = (props: {
         getFetchLink.value.options
       );
 
+      
       let json: ResponseAnswer = await res.json();
 
+
       console.log(json);
-
-
       if (!json.errorMessage && !json.error) {
         const results = json.results || json.data || json.drinks || [];
         if (results.length) {

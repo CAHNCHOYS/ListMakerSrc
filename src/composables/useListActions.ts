@@ -16,7 +16,8 @@ export const useListItemsActions = (props: {
   const isNameEditing = ref(false);
   const newListName = ref(props.name);
 
-  const updateListName = () => {
+  const updateListName = ():void => {
+    if(newListName.value.length < 4) return;
     userListsStore.updateListName(props.name, newListName.value);
     isNameEditing.value = false;
     router.push({
@@ -28,7 +29,7 @@ export const useListItemsActions = (props: {
   };
 
   //Смена мест двух любых элементов в списке
-  const moveItem = (newIndex: number, oldIndex: number) => {
+  const moveItem = (newIndex: number, oldIndex: number):void => {
     if (newIndex < 0 || newIndex >= props.list!.listItems.length) return;
     
     [props.list!.listItems[newIndex], props.list!.listItems[oldIndex]] = [
@@ -38,7 +39,7 @@ export const useListItemsActions = (props: {
   };
 
   //Меняем местами 2 соседних   элемента списка
-  const swapItems = (type: "down" | "up", index: number) => {
+  const swapItems = (type: "down" | "up", index: number):void => {
     if (type === "up") {
       [props.list!.listItems[index - 1], props.list!.listItems[index]] = [
         props.list!.listItems[index],

@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { useUserListsStore } from '@/stores/userLists';
-import { ref, watch } from 'vue';
+import { ref,  watchEffect } from 'vue';
 import UserList from '../components/UserList.vue';
 
 
@@ -46,7 +46,7 @@ const isWrongName = ref(false);
 const isListNameAdded = ref(false);
 
 
-watch(listName, (): void => {
+watchEffect(()=> {
     if (listName.value.length < 4) {
         isWrongName.value = true;
     } else isWrongName.value = false;
@@ -55,7 +55,7 @@ watch(listName, (): void => {
 
 
 
-const createNewList = (): void => {
+const createNewList = ():void => {
     if (isWrongName.value) return;
       
     userListsStore.createNewList(listName.value, props.category);

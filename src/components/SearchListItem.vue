@@ -17,21 +17,23 @@
             <div class="search-item__add-btn">
                 <button class="btn" @click="addNewItem">Добавить</button>
 
-                <Transition name="message">
-                    <p class="search-item__action-message search-item__action-message_success" v-show="isItemAdded">
-                        Элемент добавлен в список
-                    </p>
-                </Transition>
 
-                <Transition name="message">
-                    <p class="search-item__action-message search-item__action-message_err" v-show="isSameItem">
-                        Такой элемент уже есть в списке!
-                    </p>
-                </Transition>
             </div>
 
 
+
         </div>
+        <Transition name="message">
+            <p class="search-item__action-message search-item__action-message_success" v-show="isItemAdded">
+                Элемент добавлен в список
+            </p>
+        </Transition>
+
+        <Transition name="message">
+            <p class="search-item__action-message search-item__action-message_err" v-show="isSameItem">
+                Такой элемент уже есть в списке!
+            </p>
+        </Transition>
 
     </div>
 </template>
@@ -70,11 +72,14 @@ const addNewItem = (): void => {
 @import "@/assets/scss/adaptive-value.scss";
 
 .search-item {
+    padding: rem(10) rem(0);
 
+    border-bottom: rem(1) solid lightgrey;
     // .search-item__row
     &__row {
-        padding: rem(10) rem(20);
-        border-bottom: rem(1) solid lightgrey;
+
+        padding: rem(0) rem(20);
+      
         display: flex;
         align-items: center;
 
@@ -135,7 +140,7 @@ const addNewItem = (): void => {
     &__add-btn {
         display: flex;
         flex-direction: column;
-         
+
 
         button {
             align-self: flex-start;
@@ -148,14 +153,14 @@ const addNewItem = (): void => {
     // .search-item__action-message
 
     &__action-message {
-
+        padding: rem(0) rem(20);
         margin: rem(10) 0px 0px 0px;
         font-size: rem(20);
         font-weight: 500;
         // .search-item__action-message_success
 
         &_success {
-            color: rgb(57, 238, 57);
+            color: rgb(64, 170, 64);
         }
 
         // .search-item__action-message_err

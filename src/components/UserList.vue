@@ -143,7 +143,7 @@ const {
   isError,
   errorMessage,
   isTyping,
-} = useListItemsSearch(props);
+} = useListItemsSearch(props)
 </script>
 
 <style lang="scss" scoped>
@@ -174,7 +174,7 @@ const {
     height: rem(40);
 
     width: 100%;
-    max-width: rem(450);
+    max-width: rem(400);
     font-size: rem(20);
 
     &:focus {
